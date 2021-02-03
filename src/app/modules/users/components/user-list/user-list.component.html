@@ -1,1 +1,40 @@
-<p>user-list works!</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Details</th>
+      <th scope="col">actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{i + 1 }}</th>
+      <td>
+        {{ user.username }}
+      </td>
+      <td><app-user-details></app-user-details></td>
+      <td>
+        <div class="row">
+             <div class="col">
+              <app-user-update [selectedUser]="user" (onUserUpdateForm)="onUserUpdateForm($event)"></app-user-update>
+             </div>
+             <div class="col">
+              <button type="button" class="btn btn-danger" (click)="onDelete(user,i)">Delete</button>
+             </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshData()">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshData()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>

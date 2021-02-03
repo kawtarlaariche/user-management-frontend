@@ -1,0 +1,45 @@
+<form class="form-signup" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+
+        <label class="sr-only">Firstname</label>
+        <input type="text" class="form-control" formControlName="firstname" placeholder="Firstname" [ngClass]="{ 'is-invalid': isSubmitted && controls.firstname.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.firstname.errors )" class="invalid-feedback">
+          <div *ngIf="controls.firstname.errors.required">This Field is required, Please enter your Firstnmae</div>
+        </div>
+
+        <label class="sr-only">Lastname</label>
+        <input type="text" class="form-control" formControlName="lastname" placeholder="Lastname" [ngClass]="{ 'is-invalid': isSubmitted && controls.lastname.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.lastname.errors) " class="invalid-feedback">
+            <div *ngIf="controls.lastname.errors.required">This Field is required , Please enter your Lastname</div>
+          </div>
+
+        <label class="sr-only">Username</label>
+        <input type="text" class="form-control" formControlName="username" placeholder="Username" [ngClass]="{ 'is-invalid': isSubmitted && controls.username.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.username.errors)" class="invalid-feedback">
+            <div *ngIf="controls.username.errors.required">This Field is required , Please enter your Username</div>
+          </div>
+
+        <label class="sr-only">Email address</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Email adress" [ngClass]="{ 'is-invalid': isSubmitted && controls.email.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.email.errors)" class="invalid-feedback">
+            <div *ngIf="controls.email.errors.required">This Field is required , Please enter your email</div>
+            <div *ngIf="controls.email.errors.email">Please enter a valid Email adress</div>
+          </div>
+
+        <label class="sr-only">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': isSubmitted && controls.password.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.password.errors)" class="invalid-feedback">
+            <div *ngIf="controls.password.errors.required">This Field is required , Please enter Password</div>
+            <div *ngIf="controls.password.errors.pattern">The Password must has at least a number, lower case, upper case n special character and 8 charatcters in Length</div>
+          </div>
+
+        <label class="sr-only">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm password" [ngClass]="{ 'is-invalid': isSubmitted && controls.confirmPassword.errors }" autofocus="">
+        <div *ngIf="(isSubmitted && controls.confirmPassword.errors)" class="invalid-feedback">
+            <div *ngIf="controls.confirmPassword.errors.required">This Field is required , Please confirm password</div>
+            <div *ngIf="controls.confirmPassword.errors.MatchPassword">Passwords must be match</div>
+          </div>
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+  </form>
